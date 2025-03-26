@@ -216,6 +216,7 @@ This step help you how to build the go binary locally on your machine.
 THE life cycle of Docker
 Steps
 Create docker file
+build dockerfile
 Run the Docker images
 Will Containerize 
 
@@ -231,40 +232,7 @@ cd src
 cd product-catalog
 cd scr
 ls
-REMOVE THE DOCKERFILE
-rm -rf Dockerfile
-git status
 
-HOW TO WRITE DOCKERFILE
-nano Dockerfile
-
-
-# Build stage
-FROM golang:1.22-alpine AS builder
-
-WORKDIR /user/src/app
-
-COPY . .
-
-RUN go mod download
-RUN go build -o product-catalog .
-
-# Release stage
-FROM alpine AS release
-
-WORKDIR /usr/src/app
-
-COPY ./products ./products
-COPY --from=builder /user/src/app/product-catalog ./
-
-ENV PRODUCT_CATALOG_PORT=8080
-
-ENTRYPOINT ["/usr/src/app/product-catalog"]
-
-
-
-TO EXIT 
-:wq!
 
 TO BUILD THE DOCKER FILE RUN
 docker build -t tonymore/product-catalog:v1 .
@@ -320,6 +288,7 @@ STEP TO RUN THE DOCKERFILE
 THE life cycle of Docker
 Steps
 Create docker file
+build dockefile
 Run the Docker images
 Will Containerize
 
